@@ -1,0 +1,14 @@
+int majorityElement(vector<int>& nums){
+    int freq = INT_MIN;
+    int maj_element = nums[0];
+    unordered_map<int,int> m;
+    for (int i=0;i<nums.size();i++){
+        m[nums[i]]++;
+    }
+    for(auto p:m){
+        if(p.second>freq){
+            maj_element = p.first;
+        }
+    }
+    return maj_element;
+}
