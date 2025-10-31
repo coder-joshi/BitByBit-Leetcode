@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool selections(vector<int> nums, int curr,string dir) {
+        while (curr >= 0 && curr < nums.size()) {
+            if (nums[curr] > 0) {
+                nums[curr]--;
+                if(dir=="left"){
+                    dir="right";
+                    curr++;
+                }else{
+                    dir = "left";
+                    curr--;
+                }
+            }else{
+                if (dir == "left") curr--;
+                else curr++;
+            } 
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0)
+                return false;
+        }
+        return true;
+    }
+
+
+    int countValidSelections(vector<int>& nums) {
+        int ValidSelections = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0) {
+                if (selections(nums, i-1,"left")) ValidSelections++;
+                if (selections(nums, i+1,"right")) ValidSelections++;
+            }
+        }
+        return ValidSelections;
+    }
+};
