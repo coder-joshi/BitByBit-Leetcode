@@ -1,0 +1,15 @@
+//More than O(1) space Solution
+vector<int> rotate(vector<int>& nums, int k) {
+    if(k>nums.size()){
+        k = k%nums.size();
+    }
+    int idx = nums.size()-k;
+    vector<int> sec_vec;
+    for(int i=idx;i<nums.size();i++){
+        sec_vec.push_back(nums[i]);
+    }
+    for(int i=0;i<idx;i++){
+        sec_vec.push_back(nums[i]);
+    }
+    return sec_vec;
+}
